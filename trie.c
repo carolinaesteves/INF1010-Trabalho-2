@@ -4,12 +4,27 @@
 #include<string.h>
 #include "trie.h"
 
-#define TAM ?????
- 
+#define TAM 26
+// calcula o indice do hash
+#define CHAR_TO_INDEX(c) ((int)c - (int)'a')
 
 Trie *criaNo(char v)
 {
-   /* Cria nó da árvore */
+    Trie * no = (Trie*)malloc(sizeof(Trie));
+    
+    if(no==NULL)
+        exit(1);
+    
+    no->letra = v;
+    no->termino = 0;
+    
+    int i;
+    for (i = 0; i < TAM; i++)
+        no->filhos[i] = NULL; 
+    
+    no->ocupacao = 0;
+    
+    return no;
 }
 
 Trie *criaTrie()
@@ -22,7 +37,27 @@ Trie *criaTrie()
 
 void inserePalavra(Trie *t, char *palavra)
 {
- /* implementar a insecao de palavras */
+    Trie* raiz = t;
+    int i, indice;
+    
+    for (i = 0; i < strlen(palavra); i++)
+    {
+        raiz->termino = 0;
+ 
+        indice = CHAR_TO_INDEX(tolower(palavra[i]));
+        
+        // criando novo nó pois caminho nao existe
+        if(raiz->filhos[indice] == NULL)
+        {
+            raiz->filhos[indice] = criaNo(tolower(palavra[i]));
+            raiz->ocupacao ++;
+            // print para checar cada letra nova
+            printf("%c\n",raiz->filhos[indice]->letra);
+        }
+        
+        raiz = raiz->filhos[indice];
+    }
+        t->termino = 1;
 }
 
 
