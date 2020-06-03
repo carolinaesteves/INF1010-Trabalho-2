@@ -6,7 +6,7 @@
 
 #define TAM 26
 // calcula o indice do hash
-#define CHAR_TO_INDEX(c) ((int)c - (int)'a')
+#define CHAR_PARA_INDICE(c) ((int)c - (int)'a')
 
 Trie *criaNo(char v)
 {
@@ -44,7 +44,7 @@ void inserePalavra(Trie *t, char *palavra)
     {
         raiz->termino = 0;
  
-        indice = CHAR_TO_INDEX(tolower(palavra[i]));
+        indice = CHAR_PARA_INDICE(tolower(palavra[i]));
         
         // criando novo nó pois caminho nao existe
         if(raiz->filhos[indice] == NULL)
@@ -52,12 +52,12 @@ void inserePalavra(Trie *t, char *palavra)
             raiz->filhos[indice] = criaNo(tolower(palavra[i]));
             raiz->ocupacao ++;
             // print para checar cada letra nova
-            printf("%c\n",raiz->filhos[indice]->letra);
+            // printf("%c\n",raiz->filhos[indice]->letra);
         }
         
         raiz = raiz->filhos[indice];
     }
-        t->termino = 1;
+        raiz->termino = 1;
 }
 
 
@@ -81,7 +81,8 @@ void removerPalavra(Trie *t, char *palavra)
 void alphabetize2(Trie * t, char prefixo[])
 {
     int i;
-
+    
+    // quando a palavra terminar, a imprime
     if (t->termino == 1){
         printf("%s\n", prefixo); 
     }
@@ -95,6 +96,7 @@ void alphabetize2(Trie * t, char prefixo[])
             int l = strlen(prefixo);
             if(l > 0){
                 char novo_prefixo[l];
+                // printf("%s\n",prefixo);
                 strcpy(novo_prefixo, prefixo);
                 strncat(novo_prefixo, &ch, 1); 
                 alphabetize2(t->filhos[i], novo_prefixo);

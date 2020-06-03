@@ -14,25 +14,25 @@ int main()
     Trie *t = criaTrie();
     inserePalavra(t, "Joao");
     inserePalavra(t, "Joana");
-    // inserePalavra(t, "Homen");
-    // inserePalavra(t, "Homenagem");
-    // inserePalavra(t, "Bola");
-    // inserePalavra(t, "Bolao");
-    // inserePalavra(t, "Carroca");
-    // inserePalavra(t, "Carro");
-    // inserePalavra(t, "Careca");
-    // inserePalavra(t, "Carruagem");
+    inserePalavra(t, "Homen");
+    inserePalavra(t, "Homenagem");
+    inserePalavra(t, "Bola");
+    inserePalavra(t, "Bolao");
+    inserePalavra(t, "Carroca");
+    inserePalavra(t, "Carro");
+    inserePalavra(t, "Careca");
+    inserePalavra(t, "Carruagem");
 
-    // // Inicio do programa
-    // printf("Programa Teste Árvore Trie");
+    // Inicio do programa
+    printf("Programa Teste Árvore Trie");
     
-    // printf("\n---------------------------------\n\n");
+    printf("\n---------------------------------\n\n");
     
-    // // Apresenta Dicionario
-    // printf("Dicionário Trie:\n");
-    // alphabetize(t);
+    // Apresenta Dicionario
+    printf("Dicionário Trie:\n");
+    alphabetize(t);
     
-    // printf("\n---------------------------------\n\n");
+    printf("\n---------------------------------\n\n");
     
     // // Buscar palavra
     // char buscar[] = "Carro";
