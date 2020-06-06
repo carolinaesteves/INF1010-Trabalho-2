@@ -34,16 +34,16 @@ int main()
     
     printf("\n---------------------------------\n\n");
     
-    // // Buscar palavra
-    // char buscar[] = "Carro";
-    // printf("Buscar palavra: %s\n", buscar);
+     // Buscar palavra
+     char buscar[] = "Carro";
+     printf("Buscar palavra: %s\n", buscar);
     
-    // if(buscarPalavra(t, buscar))
-    //     printf("palavra '%s' encontrada.\n", buscar);
-    // else
-    //     printf("não encontrei a palavra '%s'.\n", buscar);
+     if(buscarPalavra(t, buscar))
+         printf("palavra '%s' encontrada.\n", buscar);
+     else
+         printf("não encontrei a palavra '%s'.\n", buscar);
 
-    // printf("\n---------------------------------\n\n");
+     printf("\n---------------------------------\n\n");
     
     // // Buscar prefixo
     // char buscar_prefixo[] = "Ca";

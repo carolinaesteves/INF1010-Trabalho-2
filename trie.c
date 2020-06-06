@@ -42,7 +42,7 @@ void inserePalavra(Trie *t, char *palavra)
     
     for (i = 0; i < strlen(palavra); i++)
     {
-        raiz->termino = 0;
+        //raiz->termino = 0;
  
         indice = CHAR_PARA_INDICE(tolower(palavra[i]));
         
@@ -61,9 +61,19 @@ void inserePalavra(Trie *t, char *palavra)
 }
 
 
-int buscarPalavra(Trie *t, char *palavra)
-{
- /* implementar a busca de palavras */
+int buscarPalavra(Trie *t, char *palavra){   
+    int tam,i,indice; //i vai percorrer a palavra
+    tam = strlen(palavra);
+    Trie* aux = t;
+    
+    for(i=0; i < tam; i++){
+        indice = CHAR_PARA_INDICE(tolower(palavra[i])); //transformar a string em um inteiro
+        if(aux->filhos[indice] == NULL)
+            return 0;
+        aux = aux->filhos[indice];
+    }
+
+    return 1;
 }
 
 
