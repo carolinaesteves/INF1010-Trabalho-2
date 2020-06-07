@@ -55,44 +55,44 @@ int main()
 
     // printf("\n---------------------------------\n\n");
 
-    // // Remover palavras e testar busca
+    // Remover palavras e testar busca
 
     
-    // removerPalavra(t, "Carlos");
-    // removerPalavra(t, "Joao");
-    // removerPalavra(t, "Joana");
-    // removerPalavra(t, "Homen");
-    // removerPalavra(t, "Carroca");
+    removerPalavra(t, "Carlos");
+    removerPalavra(t, "Joao");
+    removerPalavra(t, "Joana");
+    removerPalavra(t, "Homen");
+    removerPalavra(t, "Carroca");
 
-    // /* apos a remocao ficam as palavras:
-    //     Bola
-    //     Bolao
-    //     Careca 
-    //     Carro
-    //     Carruagem
-    //     Homenagem
-    // */
+    /* apos a remocao ficam as palavras:
+         Bola
+         Bolao
+         Careca 
+         Carro
+         Carruagem
+         Homenagem
+    */
 
-    // // Apresenta Dicionario após remoção
-    // printf("Dicionário Trie Após Remoção:\n");
-    // alphabetize(t);
+    // Apresenta Dicionario após remoção
+    printf("Dicionário Trie Após Remoção:\n");
+    alphabetize(t);
     
-    // printf("\nBuscar palavra: %s\n", buscar);
+    printf("\nBuscar palavra: %s\n", buscar);
     
-    // if(buscarPalavra(t, buscar))
-    //     printf("palavra '%s' encontrada.\n", buscar);
-    // else
-    //     printf("não encontrei a palavra '%s'.\n", buscar);
+    if(buscarPalavra(t, buscar))
+        printf("palavra '%s' encontrada.\n", buscar);
+    else
+        printf("não encontrei a palavra '%s'.\n", buscar);
         
-    // char buscar2[] = "Carroca";
-    // printf("\nBuscar palavra: %s\n", buscar2);
+    char buscar2[] = "Carroca";
+    printf("\nBuscar palavra: %s\n", buscar2);
     
-    // if(buscarPalavra(t, buscar2))
-    //     printf("palavra '%s' encontrada.\n", buscar2);
-    // else
-    //     printf("não encontrei a palavra '%s'.\n", buscar2);        
+    if(buscarPalavra(t, buscar2))
+        printf("palavra '%s' encontrada.\n", buscar2);
+    else
+        printf("não encontrei a palavra '%s'.\n", buscar2);        
 
-    // liberar(t);
+    liberar(t);
     
     return 0;
 }

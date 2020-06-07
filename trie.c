@@ -61,8 +61,8 @@ void inserePalavra(Trie *t, char *palavra)
 }
 
 
-int buscarPalavra(Trie *t, char *palavra){   
-    int tam,i,indice; //i vai percorrer a palavra
+int buscarPalavra(Trie* t, char* palavra){   
+    int tam,i,indice;
     tam = strlen(palavra);
     Trie* aux = t;
     
@@ -80,15 +80,60 @@ int buscarPalavra(Trie *t, char *palavra){
 Trie* buscarPrefixo(Trie *t, char *palavra)
 {
   /* implementar busca por prefixo */
+  return t;
 }
 
-void removerPalavra(Trie *t, char *palavra)
+void removerPalavra(Trie* t, char* palavra)
 {
- /* implementar remoca de palavras */
+   //4 casos
+   //1 - palavra não existe na trie
+   //2 - palavra não é parte da outra, ela é única
+   //3 - palavra existe como prefixo de outra palavra maior
+   //4 - parte da palavra é parte da outra
+    
+    int tam = strlen(palavra);
+    if(t>0){
+        //checar se a palavra é unica na trie
+        if(removeAux(t, palavra, 0, tam))
+        free(t);
+    }
+}
+int removeAux(Trie* t,char* palavra, int posicao, int tamanho){
+    int i;
+    
+    if(t!=NULL){
+        if(posicao==tamanho){
+            //checa se a palavra esta na arvore
+            //o nó não é mais o fim da palavra após a remoção
+            if(t->termino ==1){
+                t->termino = 0;
+                
+                //Verifica se a chave é única
+                if(verificaVazia(t)){
+                    return 1;
+                }
+                return 0;
+            }
+        }
+        else
+        {
+            i = CHAR_PARA_INDICE(tolower(palavra[posicao]));
+            if(removeAux(t->filhos[i], palavra, posicao+1, tamanho))
+            {
+                free(t->filhos[i]);
+                t->filhos[i] = NULL;
+                //checa se é o nó é um nó com palavra unica. Case 2 e 4 podem gerar nós com palavras únicas.
+                    if(VerificaNoTerminal(t) == 0 && verificaVazia(t) == 1){
+                        return 1;
+                    }
+                return 0;
+            }
+        }
+    }   
+    return 0;
 }
 
-
-void alphabetize2(Trie * t, char prefixo[])
+void alphabetize2(Trie* t, char prefixo[])
 {
     int i;
     
@@ -119,7 +164,7 @@ void alphabetize2(Trie * t, char prefixo[])
     }
 }
 
-void alphabetize(Trie * t){
+void alphabetize(Trie* t){
     char prefixo[] = "";
     alphabetize2(t, prefixo);
 }
@@ -132,4 +177,14 @@ void liberar(Trie *t){
             liberar(t->filhos[i]);
     
     free(t);
+}
+
+int verificaVazia(Trie* t){ 
+    for (int i = 0; i < TAM; i++) 
+        if (t->ocupacao != 0) 
+            return 0; 
+    return 1; 
+} 
+int VerificaNoTerminal(Trie* p){
+    return p->termino == 1;
 }
