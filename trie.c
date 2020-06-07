@@ -12,7 +12,8 @@ Trie *criaNo(char v)
 {
     Trie * no = (Trie*)malloc(sizeof(Trie));
     
-    if(no==NULL)
+    // problema na alocação
+    if(no == NULL)
         exit(1);
     
     no->letra = v;
@@ -31,6 +32,7 @@ Trie *criaTrie()
 {
     Trie *t = criaNo(' ');
     t->termino = 1;
+    
     return t;
 }
 
@@ -42,19 +44,15 @@ void inserePalavra(Trie *t, char *palavra)
     
     for (i = 0; i < strlen(palavra); i++)
     {
-        //raiz->termino = 0;
- 
+        // converte o char da palavra para o indice do vetor
         indice = CHAR_PARA_INDICE(tolower(palavra[i]));
         
-        // criando novo nó pois caminho nao existe
+        // criando novo nó pois caminho nao existe na trie
         if(raiz->filhos[indice] == NULL)
         {
             raiz->filhos[indice] = criaNo(tolower(palavra[i]));
             raiz->ocupacao ++;
-            // print para checar cada letra nova
-            // printf("%c\n",raiz->filhos[indice]->letra);
         }
-        
         raiz = raiz->filhos[indice];
     }
         raiz->termino = 1;
@@ -62,42 +60,54 @@ void inserePalavra(Trie *t, char *palavra)
 
 
 int buscarPalavra(Trie* t, char* palavra){   
-    int tam,i,indice;
+    //i vai percorrer a palavra
+    int tam, i, indice;
     tam = strlen(palavra);
     Trie* aux = t;
     
     for(i=0; i < tam; i++){
-        indice = CHAR_PARA_INDICE(tolower(palavra[i])); //transformar a string em um inteiro
+        //transformar a string em um inteiro
+        indice = CHAR_PARA_INDICE(tolower(palavra[i])); 
+        
         if(aux->filhos[indice] == NULL)
             return 0;
+            
         aux = aux->filhos[indice];
     }
-
-    return 1;
+    return aux->termino;
 }
 
 
 Trie* buscarPrefixo(Trie *t, char *palavra)
 {
-  /* implementar busca por prefixo */
-  return t;
+    //i vai percorrer a palavra
+    int tam, i, indice; 
+    tam = strlen(palavra);
+    Trie* aux = t;
+    
+    for(i=0; i < tam; i++){
+        //transformar a string em um inteiro
+        indice = CHAR_PARA_INDICE(tolower(palavra[i])); 
+        if(aux->filhos[indice] == NULL)
+            return 0;
+        aux = aux->filhos[indice];
+    }
+
+    return aux;
 }
 
-void removerPalavra(Trie* t, char* palavra)
-{
-   //4 casos
-   //1 - palavra não existe na trie
-   //2 - palavra não é parte da outra, ela é única
-   //3 - palavra existe como prefixo de outra palavra maior
-   //4 - parte da palavra é parte da outra
-    
-    int tam = strlen(palavra);
-    if(t>0){
-        //checar se a palavra é unica na trie
-        if(removeAux(t, palavra, 0, tam))
-        free(t);
-    }
+int verificaVazia(Trie* t){ 
+    for (int i = 0; i < TAM; i++) 
+        if (t->ocupacao != 0) 
+            return 0; 
+            
+    return 1; 
+} 
+
+int VerificaNoTerminal(Trie* p){
+    return p->termino == 1;
 }
+
 int removeAux(Trie* t,char* palavra, int posicao, int tamanho){
     int i;
     
@@ -131,6 +141,22 @@ int removeAux(Trie* t,char* palavra, int posicao, int tamanho){
         }
     }   
     return 0;
+}
+
+void removerPalavra(Trie* t, char* palavra)
+{
+   //4 casos
+   //1 - palavra não existe na trie
+   //2 - palavra não é parte da outra, ela é única
+   //3 - palavra existe como prefixo de outra palavra maior
+   //4 - parte da palavra é parte da outra
+    
+    int tam = strlen(palavra);
+    if(t>0){
+        //checar se a palavra é unica na trie
+        if(removeAux(t, palavra, 0, tam))
+        free(t);
+    }
 }
 
 void alphabetize2(Trie* t, char prefixo[])
@@ -179,12 +205,3 @@ void liberar(Trie *t){
     free(t);
 }
 
-int verificaVazia(Trie* t){ 
-    for (int i = 0; i < TAM; i++) 
-        if (t->ocupacao != 0) 
-            return 0; 
-    return 1; 
-} 
-int VerificaNoTerminal(Trie* p){
-    return p->termino == 1;
-}

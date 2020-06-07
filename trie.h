@@ -20,6 +20,3 @@ void alphabetize(Trie * t);
 void alphabetize2(Trie * t, char str[]);
 
 void liberar(Trie *t);
-int verificaVazia(Trie* t);
-int VerificaNoTerminal(Trie* p);
-int removeAux(Trie* t,char* palavra, int nivel, int tamanho);

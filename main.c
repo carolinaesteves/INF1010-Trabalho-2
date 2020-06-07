@@ -2,8 +2,8 @@
  Trabalho 2 - EDA INF 1010
 
 *** AUTORES ***
-** NOME 1 - MATRICULA 1 **
-** NOME 2 - MATRICULA 2 **
+** Ana Carolina Esteves - 1512690 **
+** Anna Carolina Fonseca - 1512996 **
 
 *******************************************************************************/
 #include <stdio.h>
@@ -45,15 +45,15 @@ int main()
 
      printf("\n---------------------------------\n\n");
     
-    // // Buscar prefixo
-    // char buscar_prefixo[] = "Ca";
-    // printf("Buscar palavras que começam com: '%s'\n", buscar_prefixo);
+    // Buscar prefixo
+    char buscar_prefixo[] = "Ca";
+    printf("Buscar palavras que começam com: '%s'\n", buscar_prefixo);
     
-    // Trie *v = buscarPrefixo(t, buscar_prefixo);
-    // if(v != NULL)
-    //     alphabetize2(v, "..");
+    Trie *v = buscarPrefixo(t, buscar_prefixo);
+    if(v != NULL)
+        alphabetize2(v, "..");
 
-    // printf("\n---------------------------------\n\n");
+    printf("\n---------------------------------\n\n");
 
     // Remover palavras e testar busca
 
